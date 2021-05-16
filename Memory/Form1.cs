@@ -9,8 +9,10 @@ namespace Memory
         int secondo = 0;
         DateTime dt = new DateTime();
         string[] carte = new string[25];
-        //string[] carte = new string[17];
 
+        string[] facile = new string[13];
+        string[] medio = new string[19];
+        string[] difficile = new string[25];
         public Form1()
         {
             InitializeComponent();
@@ -22,16 +24,24 @@ namespace Memory
             medioToolStripMenuItem.Checked = false;
             difficileToolStripMenuItem.Checked = false;
             tabControl1.TabPages[0].Controls.Clear();
-            MyFunz.CaricaCarte(carte);
+            MyFunz.CaricaFacile(facile);
+            MyFunz.CaricaMedio(medio);
+            MyFunz.CaricaDifficile(difficile);
+            MyFunz.MischiaCarte(facile);
+            MyFunz.MischiaCarte(medio);
+            MyFunz.MischiaCarte(difficile);
+
+
             int x = 1;
-            
+
             int cy = 18;
             int cy2 = 18;
             int cy3 = 18;
             while (x < 13)
             {
                 PictureBox t1 = new PictureBox();
-                t1.Name = $"carta_{x}";
+                
+                t1.Name = facile[x];
                 if (x < 5)
                 {
                     t1.Location = new Point((cy), 15);
@@ -63,20 +73,23 @@ namespace Memory
                 t1.Click += (s, args) =>
                 {
                     string car = default; ;
-                    string[] a = (t1.Name).Split('_');
-                    if (int.Parse(a[1]) > 7)
+                    string[] a = (t1.Name).Split('.');
+                    string b = a[0].Substring(1);
+                    string c = a[0].Substring(0, 1);
+                    if (b== "a")
                     {
-                        car = $"{a[1]}{a[1]}";
+                        car =facile[int.Parse(c)];
                     }
                     else
-                        car = a[1];
+                        car = facile[(int.Parse(c))+6];
 
-                    t1.ImageLocation = (@"..\..\Resources\Carte\"+car+".png");
+                    t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
                 };
-                     
+
 
                 GroupBox t2 = new GroupBox();
                 t2.Location = new Point((18), 420);
+                t2.Name = "groupBox_Dati";
                 t2.Width = 950;
                 t2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 t2.ForeColor = System.Drawing.Color.Black;
@@ -146,7 +159,8 @@ namespace Memory
             while (x < 13)
             {
                 PictureBox t1 = new PictureBox();
-                t1.Name = $"carta_{x + 1}";
+
+                t1.Name = facile[x];
                 if (x < 5)
                 {
                     t1.Location = new Point((cy), 15);
@@ -175,10 +189,28 @@ namespace Memory
 
                 t1.Visible = true;
                 tabControl1.TabPages[0].Controls.Add(t1);
+                t1.Click += (s, args) =>
+                {
+                    string car = default; ;
+                    string[] a = (t1.Name).Split('.');
+                    string b = a[0].Substring(1);
+                    string c = a[0].Substring(0, 1);
+                    if (b == "a")
+                    {
+                        car = facile[int.Parse(c)];
+                    }
+                    else
+                        car = facile[(int.Parse(c)) + 6];
+
+                    t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
+                };
+
 
                 GroupBox t2 = new GroupBox();
                 t2.Location = new Point((18), 420);
                 t2.Width = 950;
+                t2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                t2.ForeColor = System.Drawing.Color.Black;
                 t2.Text = "Dati";
 
                 Label t3 = new Label();
@@ -227,10 +259,9 @@ namespace Memory
 
                 tabControl1.TabPages[0].Controls.Add(t2);
 
-
-
                 x = x + 1;
             }
+
         }
         private void medioToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -246,8 +277,8 @@ namespace Memory
             while (x < 19)
             {
                 PictureBox t1 = new PictureBox();
-                t1.Name = $"carta_{x + 1}";
-                if (x <7)
+                t1.Name = medio[x];
+                if (x < 7)
                 {
                     t1.Location = new Point((cy), 15);
                     cy = cy + 131;
@@ -275,6 +306,21 @@ namespace Memory
 
                 t1.Visible = true;
                 tabControl1.TabPages[0].Controls.Add(t1);
+                t1.Click += (s, args) =>
+                {
+                    string car = default; ;
+                    string[] a = (t1.Name).Split('.');
+                    string b = a[0].Substring(1);
+                    string c = a[0].Substring(0, 1);
+                    if (b == "a")
+                    {
+                        car = medio[int.Parse(c)];
+                    }
+                    else
+                        car = medio[(int.Parse(c)) + 9];
+
+                    t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
+                };
 
                 GroupBox t2 = new GroupBox();
                 t2.Location = new Point((18), 420);
@@ -346,7 +392,7 @@ namespace Memory
             while (x < 25)
             {
                 PictureBox t1 = new PictureBox();
-                t1.Name = $"carta_{x + 1}";
+                t1.Name = difficile[x];
                 if (x < 9)
                 {
                     t1.Location = new Point((cy), 15);
@@ -374,6 +420,32 @@ namespace Memory
                 t1.Height = 122;
 
                 t1.Visible = true;
+                t1.Click += (s, args) =>
+                {
+                    string car = default; ;
+                    string b, c;
+                    string[] a = (t1.Name).Split('.');
+                    if(a[0].Length==2)
+                    {
+                         b = a[0].Substring(1);
+                         c = a[0].Substring(0, 1);
+                    }
+                    else
+                    {
+                        b = a[0].Substring(2);
+                        c = a[0].Substring(0, 2);
+                    }
+
+
+                    if (b == "a")
+                    {
+                        car = difficile[int.Parse(c)];
+                    }
+                    else
+                        car = difficile[(int.Parse(c)) + 12];
+
+                    t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
+                };
                 tabControl1.TabPages[0].Controls.Add(t1);
 
                 GroupBox t2 = new GroupBox();
@@ -435,6 +507,7 @@ namespace Memory
         private void btn_newGame_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(0);
+            timer1.Start();
         }
 
         private void btn_punteggi_Click(object sender, EventArgs e)
@@ -455,7 +528,8 @@ namespace Memory
         private void timer1_Tick(object sender, EventArgs e)
         {
             secondo++;
-            label1.Text = dt.AddSeconds(secondo).ToString("HH:mm:ss");
+            ((Controls.Find($"groupBox_Dati", true)[0] as GroupBox).Controls.Find($"lbl_timer", true)[0] as Label)).Text = dt.AddSeconds(secondo).ToString("HH:mm:ss");
+           
         }
 
         private void button2_Click(object sender, EventArgs e)
