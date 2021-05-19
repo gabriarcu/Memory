@@ -40,7 +40,7 @@ namespace Memory
             while (x < 13)
             {
                 PictureBox t1 = new PictureBox();
-                
+
                 t1.Name = facile[x];
                 if (x < 5)
                 {
@@ -69,6 +69,7 @@ namespace Memory
                 t1.Height = 122;
 
                 t1.Visible = true;
+                t1.Enabled = false;
                 tabControl1.TabPages[0].Controls.Add(t1);
                 t1.Click += (s, args) =>
                 {
@@ -76,12 +77,12 @@ namespace Memory
                     string[] a = (t1.Name).Split('.');
                     string b = a[0].Substring(1);
                     string c = a[0].Substring(0, 1);
-                    if (b== "a")
+                    if (b == "a")
                     {
-                        car =facile[int.Parse(c)];
+                        car = facile[int.Parse(c)];
                     }
                     else
-                        car = facile[(int.Parse(c))+6];
+                        car = facile[(int.Parse(c)) + 6];
 
                     t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
                 };
@@ -425,10 +426,10 @@ namespace Memory
                     string car = default; ;
                     string b, c;
                     string[] a = (t1.Name).Split('.');
-                    if(a[0].Length==2)
+                    if (a[0].Length == 2)
                     {
-                         b = a[0].Substring(1);
-                         c = a[0].Substring(0, 1);
+                        b = a[0].Substring(1);
+                        c = a[0].Substring(0, 1);
                     }
                     else
                     {
@@ -507,6 +508,30 @@ namespace Memory
         private void btn_newGame_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(0);
+            //foreach (Control x in this.Controls)
+            //{
+            //    if (x is PictureBox)
+            //    {
+            //        ((PictureBox)x).Enabled = true;
+            //        ((PictureBox)x).Click += (s, args) =>
+            //        {
+            //            string car = default; ;
+            //            string[] a = (x.Name).Split('.');
+            //            string b = a[0].Substring(1);
+            //            string c = a[0].Substring(0, 1);
+            //            if (b == "a")
+            //            {
+            //                car = facile[int.Parse(c)];
+            //            }
+            //            else
+            //                car = facile[(int.Parse(c)) + 6];
+
+            //            ((PictureBox)x).ImageLocation = (@"..\..\Resources\Carte\" + car);
+            //        };
+            //    }
+            //}
+            (this.Controls.Find("lbl_timer", true)[0] as Label).Text = "00:00:00";
+            secondo = 0;
             timer1.Start();
         }
 
@@ -528,8 +553,8 @@ namespace Memory
         private void timer1_Tick(object sender, EventArgs e)
         {
             secondo++;
-            ((Controls.Find($"groupBox_Dati", true)[0] as GroupBox).Controls.Find($"lbl_timer", true)[0] as Label)).Text = dt.AddSeconds(secondo).ToString("HH:mm:ss");
-           
+            (this.Controls.Find("lbl_timer", true)[0] as Label).Text = dt.AddSeconds(secondo).ToString("HH:mm:ss");
+
         }
 
         private void button2_Click(object sender, EventArgs e)
