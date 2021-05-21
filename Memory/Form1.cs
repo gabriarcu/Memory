@@ -13,6 +13,13 @@ namespace Memory
         string[] facile = new string[13];
         string[] medio = new string[19];
         string[] difficile = new string[25];
+        string livello = "facile";
+        int coppie = 0;
+        int conta = 0;
+        int mosse = 0;
+
+        string carta1 = default;
+        string carta2 = default;
         public Form1()
         {
             InitializeComponent();
@@ -37,6 +44,7 @@ namespace Memory
             int cy = 18;
             int cy2 = 18;
             int cy3 = 18;
+
             while (x < 13)
             {
                 PictureBox t1 = new PictureBox();
@@ -71,8 +79,42 @@ namespace Memory
                 t1.Visible = true;
                 t1.Enabled = false;
                 tabControl1.TabPages[0].Controls.Add(t1);
+                
                 t1.Click += (s, args) =>
                 {
+                    conta = conta + 1;
+                    switch (conta)
+                    {
+                        case 1:
+                            carta1 = "";
+                            carta1 = t1.Name;
+
+                            
+                            break;
+                        case 2:
+                            carta2 = "";
+                            carta2 = t1.Name;
+                            if (carta2.Substring(0,1)!= carta1.Substring(0, 1))
+                            {
+                                MessageBox.Show("Diversi");
+                            }
+                            else
+                            {
+                                coppie = coppie + 1;
+                                if (coppie==6)
+                                {
+                                    timer1.Stop();
+                                    MessageBox.Show("Vinto");
+                                }
+
+                                MessageBox.Show("Uguali");
+                            }
+
+
+                            conta = 0;
+                            break;
+                        
+                    }
                     string car = default; ;
                     string[] a = (t1.Name).Split('.');
                     string b = a[0].Substring(1);
@@ -85,6 +127,9 @@ namespace Memory
                         car = facile[(int.Parse(c)) + 6];
 
                     t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
+                    mosse = mosse + 1;
+                    (this.Controls.Find("lbl_mosse", true)[0] as Label).Text = mosse.ToString();
+
                 };
 
 
@@ -115,7 +160,7 @@ namespace Memory
                 t4.ForeColor = System.Drawing.Color.SteelBlue;
                 t4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                 t4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-                t4.Text = "999";
+                t4.Text = "0";
                 t2.Controls.Add(t4);
 
                 Label t5 = new Label();
@@ -152,6 +197,8 @@ namespace Memory
             medioToolStripMenuItem.Checked = false;
             difficileToolStripMenuItem.Checked = false;
             tabControl1.TabPages[0].Controls.Clear();
+            livello = "facile";
+
             int x = 1;
 
             int cy = 18;
@@ -187,7 +234,7 @@ namespace Memory
                 t1.AutoSize = false;
                 t1.Width = 114;
                 t1.Height = 122;
-
+                t1.Enabled = false;
                 t1.Visible = true;
                 tabControl1.TabPages[0].Controls.Add(t1);
                 t1.Click += (s, args) =>
@@ -270,6 +317,7 @@ namespace Memory
             medioToolStripMenuItem.Checked = true;
             facileToolStripMenuItem.Checked = false;
             difficileToolStripMenuItem.Checked = false;
+            livello = "medio";
             int x = 1;
 
             int cy = 18;
@@ -304,7 +352,7 @@ namespace Memory
                 t1.AutoSize = false;
                 t1.Width = 114;
                 t1.Height = 122;
-
+                t1.Enabled = false;
                 t1.Visible = true;
                 tabControl1.TabPages[0].Controls.Add(t1);
                 t1.Click += (s, args) =>
@@ -385,6 +433,7 @@ namespace Memory
             medioToolStripMenuItem.Checked = false;
             facileToolStripMenuItem.Checked = false;
             difficileToolStripMenuItem.Checked = true;
+            livello = "difficile";
             int x = 1;
 
             int cy = 18;
@@ -453,7 +502,7 @@ namespace Memory
                 t2.Location = new Point((18), 420);
                 t2.Width = 950;
                 t2.Text = "Dati";
-
+                t1.Enabled = false;
                 Label t3 = new Label();
                 t3.AutoSize = true;
                 t3.Location = new Point((5), 40);
@@ -508,29 +557,31 @@ namespace Memory
         private void btn_newGame_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(0);
-            //foreach (Control x in this.Controls)
-            //{
-            //    if (x is PictureBox)
-            //    {
-            //        ((PictureBox)x).Enabled = true;
-            //        ((PictureBox)x).Click += (s, args) =>
-            //        {
-            //            string car = default; ;
-            //            string[] a = (x.Name).Split('.');
-            //            string b = a[0].Substring(1);
-            //            string c = a[0].Substring(0, 1);
-            //            if (b == "a")
-            //            {
-            //                car = facile[int.Parse(c)];
-            //            }
-            //            else
-            //                car = facile[(int.Parse(c)) + 6];
 
-            //            ((PictureBox)x).ImageLocation = (@"..\..\Resources\Carte\" + car);
-            //        };
-            //    }
-            //}
+            switch (livello)
+            {
+                case "facile":
+                    MyFunz.MischiaCarte(facile);
+                    break;
+                case "medio":
+                    MyFunz.MischiaCarte(medio);
+                    break;
+                case "difficile":
+                    MyFunz.MischiaCarte(difficile);
+                    break;
+            }
+            foreach (Control x in tabControl1.TabPages[0].Controls)
+            {
+                if (x.GetType() == typeof(PictureBox))
+                {
+                    ((PictureBox)x).ImageLocation = (@"..\..\Resources\dorso.png");
+                    x.Enabled = true;
+                }
+            }
+
+            (this.Controls.Find("lbl_mosse", true)[0] as Label).Text = "0";
             (this.Controls.Find("lbl_timer", true)[0] as Label).Text = "00:00:00";
+
             secondo = 0;
             timer1.Start();
         }
