@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace Memory
 {
+    
     class MyFunz
     {
+        public struct Record
+        {
+            public int punteggio;
+            public string tempo;
+            public int mosse;
+            public DateTime timestamp;
+
+        }
         public static void CaricaCarte(string[] ca)
         {
             for (int i=1;i<13;i++)

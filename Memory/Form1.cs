@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Memory
@@ -8,6 +11,7 @@ namespace Memory
     {
         int secondo = 0;
         DateTime dt = new DateTime();
+        MyFunz.Record[] r = new MyFunz.Record[100]; 
         string[] carte = new string[25];
 
         string[] facile = new string[13];
@@ -17,9 +21,11 @@ namespace Memory
         int coppie = 0;
         int conta = 0;
         int mosse = 0;
-
-        string carta1 = default;
-        string carta2 = default;
+        int punteggio = 0;
+        int pos;
+        //int punteggio = 0;
+        PictureBox carta1 = new PictureBox();
+        PictureBox carta2 = new PictureBox();
         public Form1()
         {
             InitializeComponent();
@@ -34,9 +40,44 @@ namespace Memory
             MyFunz.CaricaFacile(facile);
             MyFunz.CaricaMedio(medio);
             MyFunz.CaricaDifficile(difficile);
-            MyFunz.MischiaCarte(facile);
+            //MyFunz.MischiaCarte(facile);
             MyFunz.MischiaCarte(medio);
             MyFunz.MischiaCarte(difficile);
+
+            string line;
+            pos = 0;
+            try
+            {
+
+                StreamReader sr = new StreamReader(@"..\..\Resources\records.csv");
+
+                line = sr.ReadLine();
+
+
+                while (line != null)
+                {
+
+                    string[] i = line.Split(',');
+                    r[pos].punteggio = int.Parse(i[0]);
+                    r[pos].tempo = (i[1]);
+                    r[pos].mosse = int.Parse(i[2]);
+                    r[pos].timestamp =DateTime.Parse( i[3]);
+                    
+
+
+                    pos = pos + 1;
+                    line = sr.ReadLine();
+                }
+                //close the file
+
+                sr.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Exception: " + e.Message);
+            }
+
 
 
             int x = 1;
@@ -83,38 +124,6 @@ namespace Memory
                 t1.Click += (s, args) =>
                 {
                     conta = conta + 1;
-                    switch (conta)
-                    {
-                        case 1:
-                            carta1 = "";
-                            carta1 = t1.Name;
-
-                            
-                            break;
-                        case 2:
-                            carta2 = "";
-                            carta2 = t1.Name;
-                            if (carta2.Substring(0,1)!= carta1.Substring(0, 1))
-                            {
-                                MessageBox.Show("Diversi");
-                            }
-                            else
-                            {
-                                coppie = coppie + 1;
-                                if (coppie==6)
-                                {
-                                    timer1.Stop();
-                                    MessageBox.Show("Vinto");
-                                }
-
-                                MessageBox.Show("Uguali");
-                            }
-
-
-                            conta = 0;
-                            break;
-                        
-                    }
                     string car = default; ;
                     string[] a = (t1.Name).Split('.');
                     string b = a[0].Substring(1);
@@ -126,8 +135,91 @@ namespace Memory
                     else
                         car = facile[(int.Parse(c)) + 6];
 
-                    t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
-                    mosse = mosse + 1;
+                   // t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
+                    switch (conta)
+                    {
+                        case 1:
+                            
+                            t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
+                            carta1 = t1;
+                           // MessageBox.Show(carta1.Name);
+
+                            
+                            break;
+                        case 2:
+                            
+                            t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
+                            
+                            carta2 = t1;
+                            //var delay = Task.Run(async () =>
+                            //{
+                            //    Stopwatch sw = Stopwatch.StartNew();
+                            //    await Task.Delay(5000);
+                                
+                            //    sw.Stop();
+                                
+
+                            //});
+                            
+                            
+
+                            //MessageBox.Show(carta2.Name);
+                            
+                            string c1 = (carta1.Name.Substring(0, 1));
+                            string c2 = (carta2.Name.Substring(0, 1));
+                            
+                            if (c1 != c2)
+                            {
+                                
+
+                                (this.Controls.Find($"{carta1.Name}", true)[0] as PictureBox).ImageLocation = (@"..\..\Resources\dorso.png");
+                                
+
+                                (this.Controls.Find($"{carta2.Name}", true)[0] as PictureBox).ImageLocation = (@"..\..\Resources\dorso.png"); ;
+                                mosse = mosse + 1;
+                            }
+                            else
+                            {
+                                coppie = coppie + 1;
+                                mosse = mosse + 1;
+                                (this.Controls.Find("lbl_indovinate", true)[0] as Label).Text = $"{coppie}/6";
+                                if (coppie == 6)
+                                {
+
+                                    timer1.Stop();
+                                    
+                                    MessageBox.Show("Hai Vinto");
+                                   
+                                     punteggio = (mosse * 100 / secondo);
+                                    label2.Text = punteggio.ToString();
+                                    coppie = 0;
+                                    
+                                    r[pos].punteggio = punteggio;
+                                    r[pos].tempo = (this.Controls.Find("lbl_timer", true)[0] as Label).Text;
+                                    r[pos].mosse = mosse;
+                                    r[pos].timestamp = DateTime.Now;
+                                    
+                                    StreamWriter sww = File.AppendText(@"..\..\Resources\records.csv");
+                                    //Write a line of text
+                                    string lineaRecord = $"{r[pos].punteggio},{r[pos].tempo},{r[pos].mosse},{r[pos].timestamp}";
+
+                                    sww.WriteLine(lineaRecord);
+
+                                    //Close the file
+                                    sww.Close();
+                                    pos = pos + 1;
+                                }
+
+                               // MessageBox.Show("Uguali");
+                            }
+
+
+                            conta = 0;
+                            break;
+                        
+                    }
+                    
+                    
                     (this.Controls.Find("lbl_mosse", true)[0] as Label).Text = mosse.ToString();
 
                 };
@@ -184,6 +276,28 @@ namespace Memory
                 t6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
                 t6.Text = "00:00:00";
                 t2.Controls.Add(t6);
+
+                Label t7 = new Label();
+                t7.AutoSize = true;
+                t7.Location = new Point((440), 40);
+                t7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                t7.ForeColor = System.Drawing.Color.SteelBlue;
+                // t3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                t7.Text = "Indovinate";
+                t2.Controls.Add(t7);
+
+                Label t8 = new Label();
+                // t4.AutoSize = true;
+                t8.Name = "lbl_indovinate";
+                t8.Location = new Point((580), 40);
+                t8.Height = 27;
+                t8.Width = 60;
+                t8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                t8.ForeColor = System.Drawing.Color.SteelBlue;
+                t8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                t8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                t8.Text = "0/6";
+                t2.Controls.Add(t8);
 
                 tabControl1.TabPages[0].Controls.Add(t2);
 
@@ -560,9 +674,9 @@ namespace Memory
 
             switch (livello)
             {
-                case "facile":
-                    MyFunz.MischiaCarte(facile);
-                    break;
+                //case "facile":
+                //    MyFunz.MischiaCarte(facile);
+                //    break;
                 case "medio":
                     MyFunz.MischiaCarte(medio);
                     break;
@@ -583,12 +697,41 @@ namespace Memory
             (this.Controls.Find("lbl_timer", true)[0] as Label).Text = "00:00:00";
 
             secondo = 0;
+            mosse = 0;
+            punteggio = 0;
             timer1.Start();
         }
 
         private void btn_punteggi_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(1);
+            
+            int y = 0;
+
+            ListViewItem Riga;
+            listView1.Items.Clear();
+
+            while (y < pos)
+            {
+                Riga = new ListViewItem(new string[]
+                {
+
+                    r[y].punteggio.ToString(),
+                    r[y].tempo,
+                    r[y].mosse.ToString(),
+                    r[y].timestamp.ToString("g")
+                    
+                }
+
+                );
+
+                listView1.Items.Add(Riga);
+
+
+                y++;
+            }
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void btn_esci_Click(object sender, EventArgs e)
