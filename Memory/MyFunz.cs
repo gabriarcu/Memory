@@ -11,6 +11,7 @@ namespace Memory
     {
         public struct Record
         {
+            public string giocatore;
             public int punteggio;
             public string tempo;
             public int mosse;

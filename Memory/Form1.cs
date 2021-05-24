@@ -11,7 +11,8 @@ namespace Memory
     {
         int secondo = 0;
         DateTime dt = new DateTime();
-        MyFunz.Record[] r = new MyFunz.Record[100]; 
+        MyFunz.Record[] r = new MyFunz.Record[100];
+        string[] giocatori = new string[100];
         string[] carte = new string[25];
 
         string[] facile = new string[13];
@@ -22,10 +23,11 @@ namespace Memory
         int conta = 0;
         int mosse = 0;
         int punteggio = 0;
-        int pos;
+        int pos,pos2;
         //int punteggio = 0;
         PictureBox carta1 = new PictureBox();
         PictureBox carta2 = new PictureBox();
+        
         public Form1()
         {
             InitializeComponent();
@@ -43,7 +45,7 @@ namespace Memory
             //MyFunz.MischiaCarte(facile);
             MyFunz.MischiaCarte(medio);
             MyFunz.MischiaCarte(difficile);
-
+            lbl_Giocatore.Text = "Scegli Player";
             string line;
             pos = 0;
             try
@@ -58,10 +60,11 @@ namespace Memory
                 {
 
                     string[] i = line.Split(',');
-                    r[pos].punteggio = int.Parse(i[0]);
-                    r[pos].tempo = (i[1]);
-                    r[pos].mosse = int.Parse(i[2]);
-                    r[pos].timestamp =DateTime.Parse( i[3]);
+                    r[pos].giocatore = (i[0]);
+                    r[pos].punteggio = int.Parse(i[1]);
+                    r[pos].tempo = (i[2]);
+                    r[pos].mosse = int.Parse(i[3]);
+                    r[pos].timestamp =DateTime.Parse( i[4]);
                     
 
 
@@ -78,7 +81,31 @@ namespace Memory
                 MessageBox.Show("Exception: " + e.Message);
             }
 
+            string line2;
+            pos2 = 0;
+            try
+            {
 
+                StreamReader sr2 = new StreamReader(@"..\..\Resources\giocatori.csv");
+
+                line2 = sr2.ReadLine();
+
+
+                while (line2 != null)
+                {
+                    giocatori[pos2] = line2;
+                    pos2 = pos2 + 1;
+                    line2 = sr2.ReadLine();
+                }
+                //close the file
+
+                sr2.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Exception: " + e.Message);
+            }
 
             int x = 1;
 
@@ -193,7 +220,8 @@ namespace Memory
                                      punteggio = (mosse * 100 / secondo);
                                     label2.Text = punteggio.ToString();
                                     coppie = 0;
-                                    
+
+                                    r[pos].giocatore = lbl_Giocatore.Text;
                                     r[pos].punteggio = punteggio;
                                     r[pos].tempo = (this.Controls.Find("lbl_timer", true)[0] as Label).Text;
                                     r[pos].mosse = mosse;
@@ -201,7 +229,7 @@ namespace Memory
                                     
                                     StreamWriter sww = File.AppendText(@"..\..\Resources\records.csv");
                                     //Write a line of text
-                                    string lineaRecord = $"{r[pos].punteggio},{r[pos].tempo},{r[pos].mosse},{r[pos].timestamp}";
+                                    string lineaRecord = $"{r[pos].giocatore},{r[pos].punteggio},{r[pos].tempo},{r[pos].mosse},{r[pos].timestamp}";
 
                                     sww.WriteLine(lineaRecord);
 
@@ -671,7 +699,10 @@ namespace Memory
         private void btn_newGame_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(0);
-
+            if (lbl_player.Text == "a")
+            {
+                tabControl1.SelectTab(2);
+            }
             switch (livello)
             {
                 //case "facile":
@@ -715,7 +746,7 @@ namespace Memory
             {
                 Riga = new ListViewItem(new string[]
                 {
-
+                    r[y].giocatore,
                     r[y].punteggio.ToString(),
                     r[y].tempo,
                     r[y].mosse.ToString(),
@@ -754,6 +785,78 @@ namespace Memory
         private void button2_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+        }
+
+        private void giocatoriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectTab(2);
+            cbo_giocatore.Items.Clear();
+            int x = 0;
+            while(x<pos2)
+            {
+                cbo_giocatore.Items.Add(giocatori[x]);
+                x = x + 1;
+            }
+        }
+
+        private void pictureBoxAggiungiGiocatore_Click(object sender, EventArgs e)
+        {
+            groupBox1.Visible = true;
+        }
+
+        private void btn_aggiungiGiocatore_Click(object sender, EventArgs e)
+        {
+            groupBox1.Visible = false;
+            if (cbo_giocatore.Items.Contains(txt_newGiocatore.Text))
+            {
+                MessageBox.Show("Giocatore gia presente");
+                return;
+            }
+            cbo_giocatore.Items.Add(txt_newGiocatore.Text);
+            cbo_giocatore.Text=(txt_newGiocatore.Text);
+            
+            lbl_player.Text = cbo_giocatore.Text;
+            giocatori[pos2] = lbl_player.Text;
+            pos2 = pos2 + 1;
+            StreamWriter swww = File.AppendText(@"..\..\Resources\giocatori.csv");
+            //Write a line of text
+
+            string linea = txt_newGiocatore.Text;
+
+            swww.WriteLine(linea);
+
+            //Close the file
+            swww.Close();
+            txt_newGiocatore.Clear();
+        }
+
+        private void lbl_Giocatore_Click(object sender, EventArgs e)
+        {
+            if (lbl_Giocatore.Text == "Scegli Player")
+            {
+                tabControl1.SelectTab(2);
+            }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex==2)
+            {
+                cbo_giocatore.Items.Clear();
+                int x = 0;
+                while (x < pos2)
+                {
+                    cbo_giocatore.Items.Add(giocatori[x]);
+                    x = x + 1;
+                }
+            }
+        }
+
+        private void cbo_giocatore_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string scelta = cbo_giocatore.SelectedItem.ToString();
+            lbl_player.Text = scelta;
+            lbl_Giocatore.Text = lbl_player.Text;
         }
     }
 }
