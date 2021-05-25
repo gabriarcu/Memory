@@ -23,11 +23,11 @@ namespace Memory
         int conta = 0;
         int mosse = 0;
         int punteggio = 0;
-        int pos,pos2;
+        int pos, pos2;
         //int punteggio = 0;
         PictureBox carta1 = new PictureBox();
         PictureBox carta2 = new PictureBox();
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -38,13 +38,15 @@ namespace Memory
             facileToolStripMenuItem.Checked = true;
             medioToolStripMenuItem.Checked = false;
             difficileToolStripMenuItem.Checked = false;
-            tabControl1.TabPages[0].Controls.Clear();
+            //tabControl1.TabPages[0].Controls.Clear();
             MyFunz.CaricaFacile(facile);
             MyFunz.CaricaMedio(medio);
             MyFunz.CaricaDifficile(difficile);
             //MyFunz.MischiaCarte(facile);
-            MyFunz.MischiaCarte(medio);
-            MyFunz.MischiaCarte(difficile);
+            
+
+            //MyFunz.MischiaCarte(medio);
+            //MyFunz.MischiaCarte(difficile);
             lbl_Giocatore.Text = "Scegli Player";
             string line;
             pos = 0;
@@ -64,8 +66,8 @@ namespace Memory
                     r[pos].punteggio = int.Parse(i[1]);
                     r[pos].tempo = (i[2]);
                     r[pos].mosse = int.Parse(i[3]);
-                    r[pos].timestamp =DateTime.Parse( i[4]);
-                    
+                    r[pos].timestamp = DateTime.Parse(i[4]);
+
 
 
                     pos = pos + 1;
@@ -107,6 +109,17 @@ namespace Memory
                 MessageBox.Show("Exception: " + e.Message);
             }
 
+            
+        }
+
+        private void facileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            facileToolStripMenuItem.Checked = true;
+            medioToolStripMenuItem.Checked = false;
+            difficileToolStripMenuItem.Checked = false;
+            tabControl1.TabPages[0].Controls.Clear();
+            livello = "facile";
+
             int x = 1;
 
             int cy = 18;
@@ -147,7 +160,7 @@ namespace Memory
                 t1.Visible = true;
                 t1.Enabled = false;
                 tabControl1.TabPages[0].Controls.Add(t1);
-                
+
                 t1.Click += (s, args) =>
                 {
                     conta = conta + 1;
@@ -162,45 +175,45 @@ namespace Memory
                     else
                         car = facile[(int.Parse(c)) + 6];
 
-                   // t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
+                    // t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
                     switch (conta)
                     {
                         case 1:
-                            
+
                             t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
                             carta1 = t1;
-                           // MessageBox.Show(carta1.Name);
+                            MessageBox.Show(carta1.Name);
 
-                            
+
                             break;
                         case 2:
-                            
+
                             t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
-                            
+
                             carta2 = t1;
                             //var delay = Task.Run(async () =>
                             //{
                             //    Stopwatch sw = Stopwatch.StartNew();
                             //    await Task.Delay(5000);
-                                
+
                             //    sw.Stop();
-                                
+
 
                             //});
-                            
-                            
 
-                            //MessageBox.Show(carta2.Name);
-                            
+
+
+                            MessageBox.Show(carta2.Name);
+
                             string c1 = (carta1.Name.Substring(0, 1));
                             string c2 = (carta2.Name.Substring(0, 1));
-                            
+
                             if (c1 != c2)
                             {
-                                
+
 
                                 (this.Controls.Find($"{carta1.Name}", true)[0] as PictureBox).ImageLocation = (@"..\..\Resources\dorso.png");
-                                
+
 
                                 (this.Controls.Find($"{carta2.Name}", true)[0] as PictureBox).ImageLocation = (@"..\..\Resources\dorso.png"); ;
                                 mosse = mosse + 1;
@@ -214,10 +227,10 @@ namespace Memory
                                 {
 
                                     timer1.Stop();
-                                    
+
                                     MessageBox.Show("Hai Vinto");
-                                   
-                                     punteggio = (mosse * 100 / secondo);
+
+                                    punteggio = (mosse * 100 / secondo);
                                     label2.Text = punteggio.ToString();
                                     coppie = 0;
 
@@ -226,7 +239,7 @@ namespace Memory
                                     r[pos].tempo = (this.Controls.Find("lbl_timer", true)[0] as Label).Text;
                                     r[pos].mosse = mosse;
                                     r[pos].timestamp = DateTime.Now;
-                                    
+
                                     StreamWriter sww = File.AppendText(@"..\..\Resources\records.csv");
                                     //Write a line of text
                                     string lineaRecord = $"{r[pos].giocatore},{r[pos].punteggio},{r[pos].tempo},{r[pos].mosse},{r[pos].timestamp}";
@@ -238,16 +251,16 @@ namespace Memory
                                     pos = pos + 1;
                                 }
 
-                               // MessageBox.Show("Uguali");
+                                // MessageBox.Show("Uguali");
                             }
 
 
                             conta = 0;
                             break;
-                        
+
                     }
-                    
-                    
+
+
                     (this.Controls.Find("lbl_mosse", true)[0] as Label).Text = mosse.ToString();
 
                 };
@@ -326,126 +339,6 @@ namespace Memory
                 t8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
                 t8.Text = "0/6";
                 t2.Controls.Add(t8);
-
-                tabControl1.TabPages[0].Controls.Add(t2);
-
-                x = x + 1;
-            }
-        }
-
-        private void facileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            facileToolStripMenuItem.Checked = true;
-            medioToolStripMenuItem.Checked = false;
-            difficileToolStripMenuItem.Checked = false;
-            tabControl1.TabPages[0].Controls.Clear();
-            livello = "facile";
-
-            int x = 1;
-
-            int cy = 18;
-            int cy2 = 18;
-            int cy3 = 18;
-            while (x < 13)
-            {
-                PictureBox t1 = new PictureBox();
-
-                t1.Name = facile[x];
-                if (x < 5)
-                {
-                    t1.Location = new Point((cy), 15);
-                    cy = cy + 131;
-                }
-
-                if (x > 4 && x < 9)
-                {
-                    t1.Location = new Point(cy2, 157);
-                    cy2 = cy2 + 131;
-                }
-
-                if (x > 8 && x < 17)
-                {
-                    t1.Location = new Point((cy3), 295);
-                    cy3 = cy3 + 131;
-                }
-
-                t1.ImageLocation = (@"..\..\Resources\dorso.png");
-
-                t1.BackgroundImageLayout = ImageLayout.Stretch;
-                t1.SizeMode = PictureBoxSizeMode.StretchImage;
-                t1.AutoSize = false;
-                t1.Width = 114;
-                t1.Height = 122;
-                t1.Enabled = false;
-                t1.Visible = true;
-                tabControl1.TabPages[0].Controls.Add(t1);
-                t1.Click += (s, args) =>
-                {
-                    string car = default; ;
-                    string[] a = (t1.Name).Split('.');
-                    string b = a[0].Substring(1);
-                    string c = a[0].Substring(0, 1);
-                    if (b == "a")
-                    {
-                        car = facile[int.Parse(c)];
-                    }
-                    else
-                        car = facile[(int.Parse(c)) + 6];
-
-                    t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
-                };
-
-
-                GroupBox t2 = new GroupBox();
-                t2.Location = new Point((18), 420);
-                t2.Width = 950;
-                t2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                t2.ForeColor = System.Drawing.Color.Black;
-                t2.Text = "Dati";
-
-                Label t3 = new Label();
-                t3.AutoSize = true;
-                t3.Location = new Point((5), 40);
-                t3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                t3.ForeColor = System.Drawing.Color.SteelBlue;
-                // t3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                t3.Text = "Mosse";
-                t2.Controls.Add(t3);
-
-                Label t4 = new Label();
-                // t4.AutoSize = true;
-                t4.Name = "lbl_mosse";
-                t4.Location = new Point((100), 40);
-                t4.Height = 27;
-                t4.Width = 55;
-                t4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                t4.ForeColor = System.Drawing.Color.SteelBlue;
-                t4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                t4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-                t4.Text = "999";
-                t2.Controls.Add(t4);
-
-                Label t5 = new Label();
-                t5.AutoSize = true;
-                t5.Location = new Point((200), 40);
-                t5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                t5.ForeColor = System.Drawing.Color.SteelBlue;
-                // t3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                t5.Text = "Timer";
-                t2.Controls.Add(t5);
-
-                Label t6 = new Label();
-                // t4.AutoSize = true;
-                t6.Name = "lbl_timer";
-                t6.Location = new Point((280), 40);
-                t6.Height = 27;
-                t6.Width = 110;
-                t6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                t6.ForeColor = System.Drawing.Color.SteelBlue;
-                t6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                t6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-                t6.Text = "00:00:00";
-                t2.Controls.Add(t6);
 
                 tabControl1.TabPages[0].Controls.Add(t2);
 
@@ -699,15 +592,234 @@ namespace Memory
         private void btn_newGame_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(0);
-            if (lbl_player.Text == "a")
+            if (lbl_Giocatore.Text == "Scegli Player")
             {
                 tabControl1.SelectTab(2);
             }
             switch (livello)
             {
-                //case "facile":
-                //    MyFunz.MischiaCarte(facile);
-                //    break;
+                case "facile":
+                    MyFunz.MischiaCarte(facile);
+                    tabControl1.TabPages[0].Controls.Clear();
+                    int x = 1;
+
+                    int cy = 18;
+                    int cy2 = 18;
+                    int cy3 = 18;
+
+                    while (x < 13)
+                    {
+                        PictureBox t1 = new PictureBox();
+
+                        t1.Name = facile[x];
+                        if (x < 5)
+                        {
+                            t1.Location = new Point((cy), 15);
+                            cy = cy + 131;
+                        }
+
+                        if (x > 4 && x < 9)
+                        {
+                            t1.Location = new Point(cy2, 157);
+                            cy2 = cy2 + 131;
+                        }
+
+                        if (x > 8 && x < 17)
+                        {
+                            t1.Location = new Point((cy3), 295);
+                            cy3 = cy3 + 131;
+                        }
+
+                        t1.ImageLocation = (@"..\..\Resources\dorso.png");
+
+                        t1.BackgroundImageLayout = ImageLayout.Stretch;
+                        t1.SizeMode = PictureBoxSizeMode.StretchImage;
+                        t1.AutoSize = false;
+                        t1.Width = 114;
+                        t1.Height = 122;
+
+                        t1.Visible = true;
+                        t1.Enabled = false;
+                        tabControl1.TabPages[0].Controls.Add(t1);
+
+                        t1.Click += (s, args) =>
+                        {
+                            conta = conta + 1;
+                            string car = default; ;
+                            //string[] a = (t1.Name).Split('.');
+                            //string b = a[0].Substring(1);
+                            //string c = a[0].Substring(0, 1);
+                            car = t1.Name;
+                            
+
+                            t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
+                            switch (conta)
+                            {
+                                case 1:
+
+                                    t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
+                                    carta1 = t1;
+                                   //MessageBox.Show(carta1.ImageLocation);
+
+
+                                    break;
+                                case 2:
+
+                                    t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
+
+                                    carta2 = t1;
+                                    string c1 = (carta1.Name.Substring(0, 1));
+                                    string c2 = (carta2.Name.Substring(0, 1));
+
+                                    if (c1 != c2)
+                                    {
+                                        //var delay = Task.Run(async () =>
+                                        //{
+                                        //    Stopwatch sw = Stopwatch.StartNew();
+                                        //    await Task.Delay(5000);
+
+                                        //    sw.Stop();
+
+
+                                        //});
+                                        //MessageBox.Show("Errato");
+                                        timer2.Start();
+
+                                        //(this.Controls.Find($"{carta1.Name}", true)[0] as PictureBox).ImageLocation = (@"..\..\Resources\dorso.png");
+
+
+                                        //(this.Controls.Find($"{carta2.Name}", true)[0] as PictureBox).ImageLocation = (@"..\..\Resources\dorso.png"); ;
+                                        //mosse = mosse + 1;
+                                    }
+                                    else
+                                    {
+                                        coppie = coppie + 1;
+                                        mosse = mosse + 1;
+                                        (this.Controls.Find("lbl_indovinate", true)[0] as Label).Text = $"{coppie}/6";
+                                        if (coppie == 6)
+                                        {
+
+                                            timer1.Stop();
+
+                                            MessageBox.Show("Hai Vinto");
+
+                                            punteggio = (mosse * 100 / secondo);
+                                            label2.Text = punteggio.ToString();
+                                            coppie = 0;
+
+                                            r[pos].giocatore = lbl_Giocatore.Text;
+                                            r[pos].punteggio = punteggio;
+                                            r[pos].tempo = (this.Controls.Find("lbl_timer", true)[0] as Label).Text;
+                                            r[pos].mosse = mosse;
+                                            r[pos].timestamp = DateTime.Now;
+
+                                            StreamWriter sww = File.AppendText(@"..\..\Resources\records.csv");
+                                            //Write a line of text
+                                            string lineaRecord = $"{r[pos].giocatore},{r[pos].punteggio},{r[pos].tempo},{r[pos].mosse},{r[pos].timestamp}";
+
+                                            sww.WriteLine(lineaRecord);
+
+                                            //Close the file
+                                            sww.Close();
+                                            pos = pos + 1;
+                                        }
+
+                                        // MessageBox.Show("Uguali");
+                                    }
+
+
+                                    conta = 0;
+                                    break;
+
+                            }
+
+
+                            (this.Controls.Find("lbl_mosse", true)[0] as Label).Text = mosse.ToString();
+
+                        };
+
+
+                        GroupBox t2 = new GroupBox();
+                        t2.Location = new Point((18), 420);
+                        t2.Name = "groupBox_Dati";
+                        t2.Width = 950;
+                        t2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        t2.ForeColor = System.Drawing.Color.Black;
+                        t2.Text = "Dati";
+
+                        Label t3 = new Label();
+                        t3.AutoSize = true;
+                        t3.Location = new Point((5), 40);
+                        t3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        t3.ForeColor = System.Drawing.Color.SteelBlue;
+                        // t3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                        t3.Text = "Mosse";
+                        t2.Controls.Add(t3);
+
+                        Label t4 = new Label();
+                        // t4.AutoSize = true;
+                        t4.Name = "lbl_mosse";
+                        t4.Location = new Point((100), 40);
+                        t4.Height = 27;
+                        t4.Width = 55;
+                        t4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        t4.ForeColor = System.Drawing.Color.SteelBlue;
+                        t4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                        t4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                        t4.Text = "0";
+                        t2.Controls.Add(t4);
+
+                        Label t5 = new Label();
+                        t5.AutoSize = true;
+                        t5.Location = new Point((200), 40);
+                        t5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        t5.ForeColor = System.Drawing.Color.SteelBlue;
+                        // t3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                        t5.Text = "Timer";
+                        t2.Controls.Add(t5);
+
+                        Label t6 = new Label();
+                        // t4.AutoSize = true;
+                        t6.Name = "lbl_timer";
+                        t6.Location = new Point((280), 40);
+                        t6.Height = 27;
+                        t6.Width = 110;
+                        t6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        t6.ForeColor = System.Drawing.Color.SteelBlue;
+                        t6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                        t6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                        t6.Text = "00:00:00";
+                        t2.Controls.Add(t6);
+
+                        Label t7 = new Label();
+                        t7.AutoSize = true;
+                        t7.Location = new Point((440), 40);
+                        t7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        t7.ForeColor = System.Drawing.Color.SteelBlue;
+                        // t3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                        t7.Text = "Indovinate";
+                        t2.Controls.Add(t7);
+
+                        Label t8 = new Label();
+                        // t4.AutoSize = true;
+                        t8.Name = "lbl_indovinate";
+                        t8.Location = new Point((580), 40);
+                        t8.Height = 27;
+                        t8.Width = 60;
+                        t8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        t8.ForeColor = System.Drawing.Color.SteelBlue;
+                        t8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                        t8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                        t8.Text = "0/6";
+                        t2.Controls.Add(t8);
+
+                        tabControl1.TabPages[0].Controls.Add(t2);
+
+                        x = x + 1;
+                    }
+                
+                    
+                    break;
                 case "medio":
                     MyFunz.MischiaCarte(medio);
                     break;
@@ -736,7 +848,7 @@ namespace Memory
         private void btn_punteggi_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(1);
-            
+
             int y = 0;
 
             ListViewItem Riga;
@@ -751,7 +863,7 @@ namespace Memory
                     r[y].tempo,
                     r[y].mosse.ToString(),
                     r[y].timestamp.ToString("g")
-                    
+
                 }
 
                 );
@@ -792,7 +904,7 @@ namespace Memory
             tabControl1.SelectTab(2);
             cbo_giocatore.Items.Clear();
             int x = 0;
-            while(x<pos2)
+            while (x < pos2)
             {
                 cbo_giocatore.Items.Add(giocatori[x]);
                 x = x + 1;
@@ -813,8 +925,8 @@ namespace Memory
                 return;
             }
             cbo_giocatore.Items.Add(txt_newGiocatore.Text);
-            cbo_giocatore.Text=(txt_newGiocatore.Text);
-            
+            cbo_giocatore.Text = (txt_newGiocatore.Text);
+
             lbl_player.Text = cbo_giocatore.Text;
             giocatori[pos2] = lbl_player.Text;
             pos2 = pos2 + 1;
@@ -840,7 +952,7 @@ namespace Memory
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex==2)
+            if (tabControl1.SelectedIndex == 2)
             {
                 cbo_giocatore.Items.Clear();
                 int x = 0;
@@ -852,11 +964,22 @@ namespace Memory
             }
         }
 
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            timer2.Stop();
+            (this.Controls.Find($"{carta1.Name}", true)[0] as PictureBox).ImageLocation = (@"..\..\Resources\dorso.png");
+
+
+            (this.Controls.Find($"{carta2.Name}", true)[0] as PictureBox).ImageLocation = (@"..\..\Resources\dorso.png"); ;
+            mosse = mosse + 1;
+        }
+
         private void cbo_giocatore_SelectedIndexChanged(object sender, EventArgs e)
         {
             string scelta = cbo_giocatore.SelectedItem.ToString();
             lbl_player.Text = scelta;
             lbl_Giocatore.Text = lbl_player.Text;
+            tabControl1.SelectTab(0);
         }
     }
 }

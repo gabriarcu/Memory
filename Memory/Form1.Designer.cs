@@ -66,6 +66,7 @@ namespace Memory
             this.difficileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.giocatoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -331,9 +332,9 @@ namespace Memory
             this.lbl_player.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_player.Location = new System.Drawing.Point(206, 119);
             this.lbl_player.Name = "lbl_player";
-            this.lbl_player.Size = new System.Drawing.Size(20, 24);
+            this.lbl_player.Size = new System.Drawing.Size(62, 24);
             this.lbl_player.TabIndex = 3;
-            this.lbl_player.Text = "a";
+            this.lbl_player.Text = "Scegli";
             // 
             // label2
             // 
@@ -428,6 +429,11 @@ namespace Memory
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // timer2
+            // 
+            this.timer2.Interval = 750;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -494,6 +500,7 @@ namespace Memory
         private System.Windows.Forms.Label lbl_Giocatore;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
