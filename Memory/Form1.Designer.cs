@@ -30,13 +30,11 @@ namespace Memory
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbl_Giocatore = new System.Windows.Forms.Label();
             this.btn_esci = new System.Windows.Forms.Button();
             this.btn_punteggi = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_newGame = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -53,7 +51,6 @@ namespace Memory
             this.btn_aggiungiGiocatore = new System.Windows.Forms.Button();
             this.txt_newGiocatore = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBoxAggiungiGiocatore = new System.Windows.Forms.PictureBox();
             this.lbl_player = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cbo_giocatore = new System.Windows.Forms.ComboBox();
@@ -67,16 +64,18 @@ namespace Memory
             this.giocatoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBoxAggiungiGiocatore = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAggiungiGiocatore)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAggiungiGiocatore)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -142,17 +141,6 @@ namespace Memory
             this.btn_punteggi.Text = "Punteggi";
             this.btn_punteggi.UseVisualStyleBackColor = false;
             this.btn_punteggi.Click += new System.EventHandler(this.btn_punteggi_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox1.Image = global::Memory.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(134, 104);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // btn_newGame
             // 
@@ -256,11 +244,11 @@ namespace Memory
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.groupBox1);
-            this.tabPage3.Controls.Add(this.pictureBoxAggiungiGiocatore);
             this.tabPage3.Controls.Add(this.lbl_player);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.cbo_giocatore);
             this.tabPage3.Controls.Add(this.label1);
+            this.tabPage3.Controls.Add(this.pictureBoxAggiungiGiocatore);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -314,17 +302,6 @@ namespace Memory
             this.label3.Size = new System.Drawing.Size(148, 24);
             this.label3.TabIndex = 3;
             this.label3.Text = "Nome Giocatore";
-            // 
-            // pictureBoxAggiungiGiocatore
-            // 
-            this.pictureBoxAggiungiGiocatore.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxAggiungiGiocatore.Image")));
-            this.pictureBoxAggiungiGiocatore.Location = new System.Drawing.Point(333, 60);
-            this.pictureBoxAggiungiGiocatore.Name = "pictureBoxAggiungiGiocatore";
-            this.pictureBoxAggiungiGiocatore.Size = new System.Drawing.Size(38, 32);
-            this.pictureBoxAggiungiGiocatore.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxAggiungiGiocatore.TabIndex = 4;
-            this.pictureBoxAggiungiGiocatore.TabStop = false;
-            this.pictureBoxAggiungiGiocatore.Click += new System.EventHandler(this.pictureBoxAggiungiGiocatore_Click);
             // 
             // lbl_player
             // 
@@ -434,6 +411,27 @@ namespace Memory
             this.timer2.Interval = 750;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // pictureBoxAggiungiGiocatore
+            // 
+            this.pictureBoxAggiungiGiocatore.Location = new System.Drawing.Point(333, 60);
+            this.pictureBoxAggiungiGiocatore.Name = "pictureBoxAggiungiGiocatore";
+            this.pictureBoxAggiungiGiocatore.Size = new System.Drawing.Size(38, 32);
+            this.pictureBoxAggiungiGiocatore.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxAggiungiGiocatore.TabIndex = 4;
+            this.pictureBoxAggiungiGiocatore.TabStop = false;
+            this.pictureBoxAggiungiGiocatore.Click += new System.EventHandler(this.pictureBoxAggiungiGiocatore_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = global::Memory.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(134, 104);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -447,7 +445,6 @@ namespace Memory
             this.panel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -456,9 +453,10 @@ namespace Memory
             this.tabPage3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAggiungiGiocatore)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAggiungiGiocatore)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

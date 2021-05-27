@@ -43,7 +43,7 @@ namespace Memory
             MyFunz.CaricaMedio(medio);
             MyFunz.CaricaDifficile(difficile);
             //MyFunz.MischiaCarte(facile);
-            
+
 
             //MyFunz.MischiaCarte(medio);
             //MyFunz.MischiaCarte(difficile);
@@ -109,7 +109,7 @@ namespace Memory
                 MessageBox.Show("Exception: " + e.Message);
             }
 
-            
+
         }
 
         private void facileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -650,7 +650,7 @@ namespace Memory
                             //string b = a[0].Substring(1);
                             //string c = a[0].Substring(0, 1);
                             car = t1.Name;
-                            
+
 
                             t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
                             switch (conta)
@@ -659,7 +659,7 @@ namespace Memory
 
                                     t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
                                     carta1 = t1;
-                                   //MessageBox.Show(carta1.ImageLocation);
+                                    //MessageBox.Show(carta1.ImageLocation);
 
 
                                     break;
@@ -817,8 +817,8 @@ namespace Memory
 
                         x = x + 1;
                     }
-                
-                    
+
+
                     break;
                 case "medio":
                     MyFunz.MischiaCarte(medio);
