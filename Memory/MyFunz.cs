@@ -15,6 +15,7 @@ namespace Memory
             public int punteggio;
             public string tempo;
             public int mosse;
+            public string livello;
             public DateTime timestamp;
 
         }

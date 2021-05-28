@@ -46,6 +46,7 @@ namespace Memory
             //MyFunz.MischiaCarte(medio);
             //MyFunz.MischiaCarte(difficile);
             lbl_Giocatore.Text = "Scegli Player";
+            lbl_livello.Text = livello;
             string line;
             pos = 0;
             try
@@ -64,7 +65,8 @@ namespace Memory
                     r[pos].punteggio = int.Parse(i[1]);
                     r[pos].tempo = (i[2]);
                     r[pos].mosse = int.Parse(i[3]);
-                    r[pos].timestamp = DateTime.Parse(i[4]);
+                    r[pos].livello = i[4];
+                    r[pos].timestamp = DateTime.Parse(i[5]);
 
 
 
@@ -112,30 +114,36 @@ namespace Memory
 
         private void facileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             facileToolStripMenuItem.Checked = true;
             medioToolStripMenuItem.Checked = false;
             difficileToolStripMenuItem.Checked = false;
             tabControl1.TabPages[0].Controls.Clear();
             livello = "facile";
+            lbl_livello.Text = livello;
 
         }
         private void medioToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             tabControl1.TabPages[0].Controls.Clear();
             medioToolStripMenuItem.Checked = true;
             facileToolStripMenuItem.Checked = false;
             difficileToolStripMenuItem.Checked = false;
             livello = "medio";
+            lbl_livello.Text = livello;
 
         }
 
         private void difficileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             tabControl1.TabPages[0].Controls.Clear();
             medioToolStripMenuItem.Checked = false;
             facileToolStripMenuItem.Checked = false;
             difficileToolStripMenuItem.Checked = true;
             livello = "difficile";
+            lbl_livello.Text = livello;
 
         }
 
@@ -151,6 +159,7 @@ namespace Memory
                 #region facile
                 case "facile":
                     MyFunz.MischiaCarte(facile);
+                    coppie = 0;
                     tabControl1.TabPages[0].Controls.Clear();
                     int x = 1;
 
@@ -248,11 +257,12 @@ namespace Memory
                                             r[pos].punteggio = punteggio;
                                             r[pos].tempo = (this.Controls.Find("lbl_timer", true)[0] as Label).Text;
                                             r[pos].mosse = mosse;
+                                            r[pos].livello = livello;
                                             r[pos].timestamp = DateTime.Now;
 
                                             StreamWriter sww = File.AppendText(@"..\..\Resources\records.csv");
 
-                                            string lineaRecord = $"{r[pos].giocatore},{r[pos].punteggio},{r[pos].tempo},{r[pos].mosse},{r[pos].timestamp}";
+                                            string lineaRecord = $"{r[pos].giocatore},{r[pos].punteggio},{r[pos].tempo},{r[pos].mosse},{r[pos].livello},{r[pos].timestamp}";
 
                                             sww.WriteLine(lineaRecord);
 
@@ -366,6 +376,7 @@ namespace Memory
                 case "medio":
 
                     MyFunz.MischiaCarte(medio);
+                    coppie = 0;
                     tabControl1.TabPages[0].Controls.Clear();
                     /////////////////////////////////////////////////////////////////////////
                     int x2 = 1;
@@ -517,7 +528,7 @@ namespace Memory
 
                                             MessageBox.Show("Hai Vinto");
 
-                                            punteggio = (mosse * 100 / secondo);
+                                            punteggio = (int)((mosse * 100 / secondo)*(1.5));
                                             label2.Text = punteggio.ToString();
                                             coppie = 0;
 
@@ -525,11 +536,12 @@ namespace Memory
                                             r[pos].punteggio = punteggio;
                                             r[pos].tempo = (this.Controls.Find("lbl_timer", true)[0] as Label).Text;
                                             r[pos].mosse = mosse;
+                                            r[pos].livello = livello;
                                             r[pos].timestamp = DateTime.Now;
 
                                             StreamWriter sww = File.AppendText(@"..\..\Resources\records.csv");
 
-                                            string lineaRecord = $"{r[pos].giocatore},{r[pos].punteggio},{r[pos].tempo},{r[pos].mosse},{r[pos].timestamp}";
+                                            string lineaRecord = $"{r[pos].giocatore},{r[pos].punteggio},{r[pos].tempo},{r[pos].mosse},{r[pos].livello},{r[pos].timestamp}";
 
                                             sww.WriteLine(lineaRecord);
 
@@ -636,7 +648,7 @@ namespace Memory
                 case "difficile":
                     MyFunz.MischiaCarte(difficile);
                     tabControl1.TabPages[0].Controls.Clear();
-
+                    coppie = 0;
                     int x3 = 1;
 
                     int cye = 18;
@@ -682,10 +694,10 @@ namespace Memory
                             string c = a[0].Substring(0, 1);
                             if (b == "a")
                             {
-                                car = medio[int.Parse(c)];
+                                car = difficile[int.Parse(c)];
                             }
                             else
-                                car = medio[(int.Parse(c)) + 9];
+                                car = difficile[(int.Parse(c)) + 12];
 
                             t1.ImageLocation = (@"..\..\Resources\Carte\" + car);
                         };
@@ -786,7 +798,7 @@ namespace Memory
 
                                             MessageBox.Show("Hai Vinto");
 
-                                            punteggio = (mosse * 100 / secondo);
+                                            punteggio = (int)((mosse * 100 / secondo) * 2);
                                             label2.Text = punteggio.ToString();
                                             coppie = 0;
 
@@ -794,11 +806,12 @@ namespace Memory
                                             r[pos].punteggio = punteggio;
                                             r[pos].tempo = (this.Controls.Find("lbl_timer", true)[0] as Label).Text;
                                             r[pos].mosse = mosse;
+                                            r[pos].livello = livello;
                                             r[pos].timestamp = DateTime.Now;
 
                                             StreamWriter sww = File.AppendText(@"..\..\Resources\records.csv");
 
-                                            string lineaRecord = $"{r[pos].giocatore},{r[pos].punteggio},{r[pos].tempo},{r[pos].mosse},{r[pos].timestamp}";
+                                            string lineaRecord = $"{r[pos].giocatore},{r[pos].punteggio},{r[pos].tempo},{r[pos].mosse},{r[pos].livello},{r[pos].timestamp}";
 
                                             sww.WriteLine(lineaRecord);
 
@@ -886,12 +899,12 @@ namespace Memory
                         l8.Name = "lbl_indovinate";
                         l8.Location = new Point((580), 40);
                         l8.Height = 27;
-                        l8.Width = 60;
+                        l8.Width = 80;
                         l8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         l8.ForeColor = System.Drawing.Color.SteelBlue;
                         l8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                         l8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-                        l8.Text = "0/9";
+                        l8.Text = "0/12";
                         g2.Controls.Add(l8);
                         tabControl1.TabPages[0].Controls.Add(g2);
 
@@ -936,11 +949,12 @@ namespace Memory
                     r[y].punteggio.ToString(),
                     r[y].tempo,
                     r[y].mosse.ToString(),
+                    r[y].livello,
                     r[y].timestamp.ToString("g")
 
                 }
 
-                );
+                ); ;
 
                 listView1.Items.Add(Riga);
 
@@ -982,6 +996,7 @@ namespace Memory
 
         private void btn_aggiungiGiocatore_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             groupBox1.Visible = false;
             if (cbo_giocatore.Items.Contains(txt_newGiocatore.Text))
             {

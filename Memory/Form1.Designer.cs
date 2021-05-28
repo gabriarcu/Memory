@@ -64,8 +64,11 @@ namespace Memory
             this.giocatoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBoxAggiungiGiocatore = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lbl_livello = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -76,11 +79,13 @@ namespace Memory
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAggiungiGiocatore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.btn_esci);
             this.panel1.Controls.Add(this.btn_punteggi);
@@ -208,6 +213,7 @@ namespace Memory
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
+            this.columnHeader6,
             this.columnHeader4});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Left;
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -215,7 +221,7 @@ namespace Memory
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(561, 501);
+            this.listView1.Size = new System.Drawing.Size(599, 501);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -411,8 +417,13 @@ namespace Memory
             this.timer2.Interval = 750;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Livello";
+            // 
             // pictureBoxAggiungiGiocatore
             // 
+            this.pictureBoxAggiungiGiocatore.Image = global::Memory.Properties.Resources.plus;
             this.pictureBoxAggiungiGiocatore.Location = new System.Drawing.Point(333, 60);
             this.pictureBoxAggiungiGiocatore.Name = "pictureBoxAggiungiGiocatore";
             this.pictureBoxAggiungiGiocatore.Size = new System.Drawing.Size(38, 32);
@@ -431,6 +442,30 @@ namespace Memory
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lbl_livello);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox3.Location = new System.Drawing.Point(5, 344);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(127, 52);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Livello";
+            // 
+            // lbl_livello
+            // 
+            this.lbl_livello.AutoSize = true;
+            this.lbl_livello.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_livello.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lbl_livello.ForeColor = System.Drawing.Color.Yellow;
+            this.lbl_livello.Location = new System.Drawing.Point(22, 18);
+            this.lbl_livello.Name = "lbl_livello";
+            this.lbl_livello.Size = new System.Drawing.Size(60, 24);
+            this.lbl_livello.TabIndex = 4;
+            this.lbl_livello.Text = "label4";
             // 
             // Form1
             // 
@@ -457,6 +492,8 @@ namespace Memory
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAggiungiGiocatore)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -499,6 +536,9 @@ namespace Memory
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label lbl_livello;
     }
 }
 
