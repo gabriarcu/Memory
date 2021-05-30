@@ -109,7 +109,15 @@ namespace Memory
                 MessageBox.Show("Exception: " + e.Message);
             }
 
-
+            cbo_giocatore.Items.Clear();
+            cbo_eliminaGiocatore.Items.Clear();
+            int x = 0;
+            while (x < pos2)
+            {
+                cbo_giocatore.Items.Add(giocatori[x]);
+                cbo_eliminaGiocatore.Items.Add(giocatori[x]);
+                x = x + 1;
+            }
         }
 
         private void facileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -528,7 +536,7 @@ namespace Memory
 
                                             MessageBox.Show("Hai Vinto");
 
-                                            punteggio = (int)((mosse * 100 / secondo)*(1.5));
+                                            punteggio = (int)((mosse * 100 / secondo) * (2));
                                             label2.Text = punteggio.ToString();
                                             coppie = 0;
 
@@ -798,7 +806,7 @@ namespace Memory
 
                                             MessageBox.Show("Hai Vinto");
 
-                                            punteggio = (int)((mosse * 100 / secondo) * 2);
+                                            punteggio = (int)((mosse * 100 / secondo) * 4);
                                             label2.Text = punteggio.ToString();
                                             coppie = 0;
 
@@ -934,6 +942,7 @@ namespace Memory
 
         private void btn_punteggi_Click(object sender, EventArgs e)
         {
+
             tabControl1.SelectTab(1);
 
             int y = 0;
@@ -981,23 +990,20 @@ namespace Memory
         {
             tabControl1.SelectTab(2);
             cbo_giocatore.Items.Clear();
+            cbo_eliminaGiocatore.Items.Clear();
             int x = 0;
             while (x < pos2)
             {
                 cbo_giocatore.Items.Add(giocatori[x]);
+                cbo_eliminaGiocatore.Items.Add(giocatori[x]);
                 x = x + 1;
             }
-        }
-
-        private void pictureBoxAggiungiGiocatore_Click(object sender, EventArgs e)
-        {
-            groupBox1.Visible = true;
         }
 
         private void btn_aggiungiGiocatore_Click(object sender, EventArgs e)
         {
             timer1.Stop();
-            groupBox1.Visible = false;
+          
             if (cbo_giocatore.Items.Contains(txt_newGiocatore.Text))
             {
                 MessageBox.Show("Giocatore gia presente");
@@ -1019,6 +1025,12 @@ namespace Memory
             //Close the file
             swww.Close();
             txt_newGiocatore.Clear();
+            MyFunz.CaricaGiocatori(giocatori, pos2);
+            for (int s = 0; s < pos2; s++)
+            {
+                cbo_giocatore.Items.Add(giocatori[s]);
+                cbo_eliminaGiocatore.Items.Add(giocatori[s]);
+            }
         }
 
         private void lbl_Giocatore_Click(object sender, EventArgs e)
@@ -1058,7 +1070,43 @@ namespace Memory
             string scelta = cbo_giocatore.SelectedItem.ToString();
             lbl_player.Text = scelta;
             lbl_Giocatore.Text = lbl_player.Text;
+            
+        }
+
+        private void btn_torna_Click(object sender, EventArgs e)
+        {
             tabControl1.SelectTab(0);
         }
+
+
+        private void btn_eliminaGiocatore_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(btn_eliminaGiocatore.Text))
+            {
+                MessageBox.Show("Selezionare il giocatore");
+                return;
+            }
+
+            int nDatiCanc = 0;
+
+            MyFunz.Elimina(giocatori, ref pos2, cbo_eliminaGiocatore.Text);
+
+            MessageBox.Show($"{cbo_eliminaGiocatore.Text} Cancellato");
+            MyFunz.SalvaGiocatori(giocatori, pos2);
+            MyFunz.CaricaGiocatori(giocatori, pos2);
+            cbo_eliminaGiocatore.Items.Clear();
+            cbo_giocatore.Items.Clear();
+            for (int s = 0; s < pos2; s++)
+            {
+                cbo_giocatore.Items.Add(giocatori[s]);
+                cbo_eliminaGiocatore.Items.Add(giocatori[s]);
+            }
+
+
+
+        }
     }
+
+
 }
+

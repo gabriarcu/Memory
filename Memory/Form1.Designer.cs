@@ -1,5 +1,4 @@
-﻿
-namespace Memory
+﻿namespace Memory
 {
     partial class Form1
     {
@@ -31,10 +30,13 @@ namespace Memory
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lbl_livello = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbl_Giocatore = new System.Windows.Forms.Label();
             this.btn_esci = new System.Windows.Forms.Button();
             this.btn_punteggi = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_newGame = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -45,8 +47,13 @@ namespace Memory
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cbo_eliminaGiocatore = new System.Windows.Forms.ComboBox();
+            this.btn_eliminaGiocatore = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_aggiungiGiocatore = new System.Windows.Forms.Button();
             this.txt_newGiocatore = new System.Windows.Forms.TextBox();
@@ -64,22 +71,18 @@ namespace Memory
             this.giocatoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pictureBoxAggiungiGiocatore = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lbl_livello = new System.Windows.Forms.Label();
+            this.btn_torna = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAggiungiGiocatore)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -96,6 +99,30 @@ namespace Memory
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(134, 557);
             this.panel1.TabIndex = 0;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lbl_livello);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox3.Location = new System.Drawing.Point(5, 344);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(127, 52);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Livello";
+            // 
+            // lbl_livello
+            // 
+            this.lbl_livello.AutoSize = true;
+            this.lbl_livello.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_livello.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lbl_livello.ForeColor = System.Drawing.Color.Yellow;
+            this.lbl_livello.Location = new System.Drawing.Point(22, 18);
+            this.lbl_livello.Name = "lbl_livello";
+            this.lbl_livello.Size = new System.Drawing.Size(60, 24);
+            this.lbl_livello.TabIndex = 4;
+            this.lbl_livello.Text = "label4";
             // 
             // groupBox2
             // 
@@ -146,6 +173,17 @@ namespace Memory
             this.btn_punteggi.Text = "Punteggi";
             this.btn_punteggi.UseVisualStyleBackColor = false;
             this.btn_punteggi.Click += new System.EventHandler(this.btn_punteggi_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = global::Memory.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(134, 104);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // btn_newGame
             // 
@@ -242,6 +280,10 @@ namespace Memory
             // 
             this.columnHeader3.Text = "Mosse";
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Livello";
+            // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Data Ora";
@@ -249,12 +291,13 @@ namespace Memory
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btn_torna);
+            this.tabPage3.Controls.Add(this.groupBox4);
             this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Controls.Add(this.lbl_player);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.cbo_giocatore);
             this.tabPage3.Controls.Add(this.label1);
-            this.tabPage3.Controls.Add(this.pictureBoxAggiungiGiocatore);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -262,6 +305,54 @@ namespace Memory
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox4.Controls.Add(this.cbo_eliminaGiocatore);
+            this.groupBox4.Controls.Add(this.btn_eliminaGiocatore);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.groupBox4.Location = new System.Drawing.Point(454, 264);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(375, 185);
+            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Elimina giocatore";
+            // 
+            // cbo_eliminaGiocatore
+            // 
+            this.cbo_eliminaGiocatore.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_eliminaGiocatore.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.cbo_eliminaGiocatore.FormattingEnabled = true;
+            this.cbo_eliminaGiocatore.Location = new System.Drawing.Point(170, 42);
+            this.cbo_eliminaGiocatore.Name = "cbo_eliminaGiocatore";
+            this.cbo_eliminaGiocatore.Size = new System.Drawing.Size(182, 32);
+            this.cbo_eliminaGiocatore.TabIndex = 6;
+            // 
+            // btn_eliminaGiocatore
+            // 
+            this.btn_eliminaGiocatore.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_eliminaGiocatore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_eliminaGiocatore.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_eliminaGiocatore.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btn_eliminaGiocatore.Location = new System.Drawing.Point(124, 117);
+            this.btn_eliminaGiocatore.Name = "btn_eliminaGiocatore";
+            this.btn_eliminaGiocatore.Size = new System.Drawing.Size(127, 40);
+            this.btn_eliminaGiocatore.TabIndex = 5;
+            this.btn_eliminaGiocatore.Text = "Elimina";
+            this.btn_eliminaGiocatore.UseVisualStyleBackColor = false;
+            this.btn_eliminaGiocatore.Click += new System.EventHandler(this.btn_eliminaGiocatore_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.label4.Location = new System.Drawing.Point(16, 46);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(148, 24);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Nome Giocatore";
             // 
             // groupBox1
             // 
@@ -276,7 +367,6 @@ namespace Memory
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Aggiungi giocatore";
-            this.groupBox1.Visible = false;
             // 
             // btn_aggiungiGiocatore
             // 
@@ -417,55 +507,19 @@ namespace Memory
             this.timer2.Interval = 750;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // columnHeader6
+            // btn_torna
             // 
-            this.columnHeader6.Text = "Livello";
-            // 
-            // pictureBoxAggiungiGiocatore
-            // 
-            this.pictureBoxAggiungiGiocatore.Image = global::Memory.Properties.Resources.plus;
-            this.pictureBoxAggiungiGiocatore.Location = new System.Drawing.Point(333, 60);
-            this.pictureBoxAggiungiGiocatore.Name = "pictureBoxAggiungiGiocatore";
-            this.pictureBoxAggiungiGiocatore.Size = new System.Drawing.Size(38, 32);
-            this.pictureBoxAggiungiGiocatore.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxAggiungiGiocatore.TabIndex = 4;
-            this.pictureBoxAggiungiGiocatore.TabStop = false;
-            this.pictureBoxAggiungiGiocatore.Click += new System.EventHandler(this.pictureBoxAggiungiGiocatore_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox1.Image = global::Memory.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(134, 104);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.lbl_livello);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.groupBox3.Location = new System.Drawing.Point(5, 344);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(127, 52);
-            this.groupBox3.TabIndex = 6;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Livello";
-            // 
-            // lbl_livello
-            // 
-            this.lbl_livello.AutoSize = true;
-            this.lbl_livello.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_livello.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lbl_livello.ForeColor = System.Drawing.Color.Yellow;
-            this.lbl_livello.Location = new System.Drawing.Point(22, 18);
-            this.lbl_livello.Name = "lbl_livello";
-            this.lbl_livello.Size = new System.Drawing.Size(60, 24);
-            this.lbl_livello.TabIndex = 4;
-            this.lbl_livello.Text = "label4";
+            this.btn_torna.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_torna.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_torna.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_torna.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btn_torna.Location = new System.Drawing.Point(46, 246);
+            this.btn_torna.Name = "btn_torna";
+            this.btn_torna.Size = new System.Drawing.Size(281, 33);
+            this.btn_torna.TabIndex = 7;
+            this.btn_torna.Text = "Torna al gioco";
+            this.btn_torna.UseVisualStyleBackColor = false;
+            this.btn_torna.Click += new System.EventHandler(this.btn_torna_Click);
             // 
             // Form1
             // 
@@ -478,22 +532,23 @@ namespace Memory
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Memory Game";
             this.panel1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAggiungiGiocatore)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -523,7 +578,6 @@ namespace Memory
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ToolStripMenuItem giocatoriToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pictureBoxAggiungiGiocatore;
         private System.Windows.Forms.Label lbl_player;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbo_giocatore;
@@ -539,6 +593,10 @@ namespace Memory
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label lbl_livello;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.ComboBox cbo_eliminaGiocatore;
+        private System.Windows.Forms.Button btn_eliminaGiocatore;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btn_torna;
     }
 }
-
