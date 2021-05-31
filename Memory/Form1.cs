@@ -12,6 +12,7 @@ namespace Memory
         int secondo = 0;
         DateTime dt = new DateTime();
         MyFunz.Record[] r = new MyFunz.Record[100];
+        MyFunz.Record[] rFiltro = new MyFunz.Record[100];
         string[] giocatori = new string[100];
         string[] carte = new string[25];
 
@@ -118,6 +119,7 @@ namespace Memory
                 cbo_eliminaGiocatore.Items.Add(giocatori[x]);
                 x = x + 1;
             }
+            
         }
 
         private void facileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -952,6 +954,7 @@ namespace Memory
 
             while (y < pos)
             {
+                rFiltro[y] = r[y];
                 Riga = new ListViewItem(new string[]
                 {
                     r[y].giocatore,
@@ -972,6 +975,11 @@ namespace Memory
             }
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+            for (int s = 0; s < pos2; s++)
+            {
+                cbo_filtroGiocatore.Items.Add(giocatori[s]);
+            }
         }
 
         private void btn_esci_Click(object sender, EventArgs e)
@@ -1003,7 +1011,7 @@ namespace Memory
         private void btn_aggiungiGiocatore_Click(object sender, EventArgs e)
         {
             timer1.Stop();
-          
+
             if (cbo_giocatore.Items.Contains(txt_newGiocatore.Text))
             {
                 MessageBox.Show("Giocatore gia presente");
@@ -1070,7 +1078,7 @@ namespace Memory
             string scelta = cbo_giocatore.SelectedItem.ToString();
             lbl_player.Text = scelta;
             lbl_Giocatore.Text = lbl_player.Text;
-            
+
         }
 
         private void btn_torna_Click(object sender, EventArgs e)
@@ -1078,6 +1086,221 @@ namespace Memory
             tabControl1.SelectTab(0);
         }
 
+        private void btn_torna2_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectTab(0);
+        }
+
+        private void cbo_livello_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selezione = cbo_livello.SelectedItem.ToString();
+            int y = 0;
+
+            ListViewItem Riga;
+            listView1.Items.Clear();
+
+            while (y < pos)
+            {
+                if (r[y].livello == selezione)
+                {
+                    Riga = new ListViewItem(new string[]
+                    {
+                    r[y].giocatore,
+                    r[y].punteggio.ToString(),
+                    r[y].tempo,
+                    r[y].mosse.ToString(),
+                    r[y].livello,
+                    r[y].timestamp.ToString("g")
+
+                    }
+
+                    ); ;
+
+                    listView1.Items.Add(Riga);
+                }
+
+
+
+                y++;
+            }
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+        private void btn_resetLivello_Click_1(object sender, EventArgs e)
+        {
+            int y = 0;
+
+            ListViewItem Riga;
+            listView1.Items.Clear();
+
+            while (y < pos)
+            {
+                Riga = new ListViewItem(new string[]
+                {
+                    r[y].giocatore,
+                    r[y].punteggio.ToString(),
+                    r[y].tempo,
+                    r[y].mosse.ToString(),
+                    r[y].livello,
+                    r[y].timestamp.ToString("g")
+
+                }
+
+                ); ;
+
+                listView1.Items.Add(Riga);
+
+
+                y++;
+            }
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            
+        }
+
+        private void btn_filtroData_Click(object sender, EventArgs e)
+        {
+            DateTime data1 = dateTimePicker1.Value;
+            DateTime data2 = dateTimePicker2.Value;
+            if (data1>data2)
+            {
+                MessageBox.Show("Data inizio maggiore della data di fine","Attenzione",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DateTime data3 = data1.AddDays(-1);
+            DateTime data4 = data1.AddDays(1);
+            int y = 0;
+
+            ListViewItem Riga;
+            listView1.Items.Clear();
+
+            while (y < pos)
+            {
+                if (r[y].timestamp > data3 && r[y].timestamp < data4)
+                {
+                    Riga = new ListViewItem(new string[]
+                    {
+                    r[y].giocatore,
+                    r[y].punteggio.ToString(),
+                    r[y].tempo,
+                    r[y].mosse.ToString(),
+                    r[y].livello,
+                    r[y].timestamp.ToString("g")
+
+                    }
+
+                    ); ;
+
+                    listView1.Items.Add(Riga);
+                }
+
+
+
+                y++;
+            }
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+        }
+
+        private void btn_resetData_Click(object sender, EventArgs e)
+        {
+            int y = 0;
+
+            ListViewItem Riga;
+            listView1.Items.Clear();
+
+            while (y < pos)
+            {
+                Riga = new ListViewItem(new string[]
+                {
+                    r[y].giocatore,
+                    r[y].punteggio.ToString(),
+                    r[y].tempo,
+                    r[y].mosse.ToString(),
+                    r[y].livello,
+                    r[y].timestamp.ToString("g")
+
+                }
+
+                ); ;
+
+                listView1.Items.Add(Riga);
+
+
+                y++;
+            }
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void btn_resetGiocatore_Click(object sender, EventArgs e)
+        {
+            int y = 0;
+
+            ListViewItem Riga;
+            listView1.Items.Clear();
+
+            while (y < pos)
+            {
+                Riga = new ListViewItem(new string[]
+                {
+                    r[y].giocatore,
+                    r[y].punteggio.ToString(),
+                    r[y].tempo,
+                    r[y].mosse.ToString(),
+                    r[y].livello,
+                    r[y].timestamp.ToString("g")
+
+                }
+
+                ); ;
+
+                listView1.Items.Add(Riga);
+
+
+                y++;
+            }
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void cbo_filtroGiocatore_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selezione = cbo_filtroGiocatore.SelectedItem.ToString();
+            int y = 0;
+
+            ListViewItem Riga;
+            listView1.Items.Clear();
+
+            while (y < pos)
+            {
+                if (r[y].giocatore == selezione)
+                {
+                    Riga = new ListViewItem(new string[]
+                    {
+                    r[y].giocatore,
+                    r[y].punteggio.ToString(),
+                    r[y].tempo,
+                    r[y].mosse.ToString(),
+                    r[y].livello,
+                    r[y].timestamp.ToString("g")
+
+                    }
+
+                    ); ;
+
+                    listView1.Items.Add(Riga);
+                }
+
+
+
+                y++;
+            }
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
 
         private void btn_eliminaGiocatore_Click(object sender, EventArgs e)
         {

@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lbl_livello = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -42,6 +43,23 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.btn_resetGiocatore = new System.Windows.Forms.Button();
+            this.cbo_filtroGiocatore = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btn_filtroData = new System.Windows.Forms.Button();
+            this.btn_resetData = new System.Windows.Forms.Button();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btn_resetLivello = new System.Windows.Forms.Button();
+            this.cbo_livello = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btn_torna2 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -50,6 +68,7 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btn_torna = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cbo_eliminaGiocatore = new System.Windows.Forms.ComboBox();
             this.btn_eliminaGiocatore = new System.Windows.Forms.Button();
@@ -71,7 +90,6 @@
             this.giocatoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.btn_torna = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -79,6 +97,10 @@
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -88,6 +110,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.btn_esci);
@@ -99,6 +122,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(134, 557);
             this.panel1.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label5.Location = new System.Drawing.Point(3, 537);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Gabriarcu";
             // 
             // groupBox3
             // 
@@ -236,6 +271,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage2.Controls.Add(this.groupBox5);
+            this.tabPage2.Controls.Add(this.btn_torna2);
             this.tabPage2.Controls.Add(this.listView1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -243,6 +280,216 @@
             this.tabPage2.Size = new System.Drawing.Size(1088, 507);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.groupBox8);
+            this.groupBox5.Controls.Add(this.groupBox7);
+            this.groupBox5.Controls.Add(this.groupBox6);
+            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.ForeColor = System.Drawing.Color.Black;
+            this.groupBox5.Location = new System.Drawing.Point(608, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(472, 459);
+            this.groupBox5.TabIndex = 9;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Filtri";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.btn_resetGiocatore);
+            this.groupBox8.Controls.Add(this.cbo_filtroGiocatore);
+            this.groupBox8.Controls.Add(this.label9);
+            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox8.Location = new System.Drawing.Point(16, 329);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(450, 125);
+            this.groupBox8.TabIndex = 2;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Giocatore";
+            // 
+            // btn_resetGiocatore
+            // 
+            this.btn_resetGiocatore.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_resetGiocatore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_resetGiocatore.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_resetGiocatore.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btn_resetGiocatore.Location = new System.Drawing.Point(6, 82);
+            this.btn_resetGiocatore.Name = "btn_resetGiocatore";
+            this.btn_resetGiocatore.Size = new System.Drawing.Size(121, 33);
+            this.btn_resetGiocatore.TabIndex = 12;
+            this.btn_resetGiocatore.Text = "Reset Filtro";
+            this.btn_resetGiocatore.UseVisualStyleBackColor = false;
+            this.btn_resetGiocatore.Click += new System.EventHandler(this.btn_resetGiocatore_Click);
+            // 
+            // cbo_filtroGiocatore
+            // 
+            this.cbo_filtroGiocatore.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_filtroGiocatore.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbo_filtroGiocatore.FormattingEnabled = true;
+            this.cbo_filtroGiocatore.Location = new System.Drawing.Point(179, 27);
+            this.cbo_filtroGiocatore.Name = "cbo_filtroGiocatore";
+            this.cbo_filtroGiocatore.Size = new System.Drawing.Size(185, 32);
+            this.cbo_filtroGiocatore.TabIndex = 11;
+            this.cbo_filtroGiocatore.SelectedIndexChanged += new System.EventHandler(this.cbo_filtroGiocatore_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(15, 31);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(158, 24);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Scegli il giocatore";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.btn_filtroData);
+            this.groupBox7.Controls.Add(this.btn_resetData);
+            this.groupBox7.Controls.Add(this.dateTimePicker2);
+            this.groupBox7.Controls.Add(this.label8);
+            this.groupBox7.Controls.Add(this.dateTimePicker1);
+            this.groupBox7.Controls.Add(this.label7);
+            this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox7.Location = new System.Drawing.Point(16, 169);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(450, 154);
+            this.groupBox7.TabIndex = 1;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Data";
+            // 
+            // btn_filtroData
+            // 
+            this.btn_filtroData.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_filtroData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_filtroData.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_filtroData.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btn_filtroData.Location = new System.Drawing.Point(303, 106);
+            this.btn_filtroData.Name = "btn_filtroData";
+            this.btn_filtroData.Size = new System.Drawing.Size(141, 33);
+            this.btn_filtroData.TabIndex = 11;
+            this.btn_filtroData.Text = "Applica Filtro";
+            this.btn_filtroData.UseVisualStyleBackColor = false;
+            this.btn_filtroData.Click += new System.EventHandler(this.btn_filtroData_Click);
+            // 
+            // btn_resetData
+            // 
+            this.btn_resetData.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_resetData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_resetData.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_resetData.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btn_resetData.Location = new System.Drawing.Point(6, 106);
+            this.btn_resetData.Name = "btn_resetData";
+            this.btn_resetData.Size = new System.Drawing.Size(121, 33);
+            this.btn_resetData.TabIndex = 10;
+            this.btn_resetData.Text = "Reset Filtro";
+            this.btn_resetData.UseVisualStyleBackColor = false;
+            this.btn_resetData.Click += new System.EventHandler(this.btn_resetData_Click);
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(133, 62);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 29);
+            this.dateTimePicker2.TabIndex = 4;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(15, 64);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(82, 24);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Data fine";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(133, 27);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 29);
+            this.dateTimePicker1.TabIndex = 2;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(15, 29);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 24);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Data inizio";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.btn_resetLivello);
+            this.groupBox6.Controls.Add(this.cbo_livello);
+            this.groupBox6.Controls.Add(this.label6);
+            this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox6.Location = new System.Drawing.Point(16, 25);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(450, 138);
+            this.groupBox6.TabIndex = 0;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Livello";
+            // 
+            // btn_resetLivello
+            // 
+            this.btn_resetLivello.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_resetLivello.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_resetLivello.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_resetLivello.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btn_resetLivello.Location = new System.Drawing.Point(6, 99);
+            this.btn_resetLivello.Name = "btn_resetLivello";
+            this.btn_resetLivello.Size = new System.Drawing.Size(121, 33);
+            this.btn_resetLivello.TabIndex = 9;
+            this.btn_resetLivello.Text = "Reset Filtro";
+            this.btn_resetLivello.UseVisualStyleBackColor = false;
+            this.btn_resetLivello.Click += new System.EventHandler(this.btn_resetLivello_Click_1);
+            // 
+            // cbo_livello
+            // 
+            this.cbo_livello.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_livello.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbo_livello.FormattingEnabled = true;
+            this.cbo_livello.Items.AddRange(new object[] {
+            "facile",
+            "medio",
+            "difficile"});
+            this.cbo_livello.Location = new System.Drawing.Point(175, 32);
+            this.cbo_livello.Name = "cbo_livello";
+            this.cbo_livello.Size = new System.Drawing.Size(185, 32);
+            this.cbo_livello.TabIndex = 1;
+            this.cbo_livello.SelectedIndexChanged += new System.EventHandler(this.cbo_livello_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(15, 36);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(127, 24);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Scegli il livello";
+            // 
+            // btn_torna2
+            // 
+            this.btn_torna2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_torna2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_torna2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_torna2.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btn_torna2.Location = new System.Drawing.Point(799, 471);
+            this.btn_torna2.Name = "btn_torna2";
+            this.btn_torna2.Size = new System.Drawing.Size(281, 33);
+            this.btn_torna2.TabIndex = 8;
+            this.btn_torna2.Text = "Torna al gioco";
+            this.btn_torna2.UseVisualStyleBackColor = false;
+            this.btn_torna2.Click += new System.EventHandler(this.btn_torna2_Click);
             // 
             // listView1
             // 
@@ -267,22 +514,27 @@
             // columnHeader5
             // 
             this.columnHeader5.Text = "Giocatore";
+            this.columnHeader5.Width = 99;
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Punteggio";
+            this.columnHeader1.Width = 107;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Tempo";
+            this.columnHeader2.Width = 90;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Mosse";
+            this.columnHeader3.Width = 86;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Livello";
+            this.columnHeader6.Width = 79;
             // 
             // columnHeader4
             // 
@@ -305,6 +557,20 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btn_torna
+            // 
+            this.btn_torna.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_torna.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_torna.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_torna.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btn_torna.Location = new System.Drawing.Point(46, 246);
+            this.btn_torna.Name = "btn_torna";
+            this.btn_torna.Size = new System.Drawing.Size(281, 33);
+            this.btn_torna.TabIndex = 7;
+            this.btn_torna.Text = "Torna al gioco";
+            this.btn_torna.UseVisualStyleBackColor = false;
+            this.btn_torna.Click += new System.EventHandler(this.btn_torna_Click);
             // 
             // groupBox4
             // 
@@ -507,20 +773,6 @@
             this.timer2.Interval = 750;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // btn_torna
-            // 
-            this.btn_torna.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btn_torna.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_torna.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_torna.ForeColor = System.Drawing.Color.SteelBlue;
-            this.btn_torna.Location = new System.Drawing.Point(46, 246);
-            this.btn_torna.Name = "btn_torna";
-            this.btn_torna.Size = new System.Drawing.Size(281, 33);
-            this.btn_torna.TabIndex = 7;
-            this.btn_torna.Text = "Torna al gioco";
-            this.btn_torna.UseVisualStyleBackColor = false;
-            this.btn_torna.Click += new System.EventHandler(this.btn_torna_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -532,6 +784,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Memory Game";
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -541,6 +794,13 @@
             this.panel2.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -598,5 +858,23 @@
         private System.Windows.Forms.Button btn_eliminaGiocatore;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btn_torna;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btn_torna2;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Button btn_resetLivello;
+        private System.Windows.Forms.ComboBox cbo_livello;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btn_filtroData;
+        private System.Windows.Forms.Button btn_resetData;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btn_resetGiocatore;
+        private System.Windows.Forms.ComboBox cbo_filtroGiocatore;
+        private System.Windows.Forms.Label label9;
     }
 }
